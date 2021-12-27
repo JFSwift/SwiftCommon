@@ -2,6 +2,10 @@
 
 通过AOP思想解决基类的继承问题。
 
+### Installation
+
+`pod 'SwiftCommon'`
+
 ## Requirements
 
 在AppDelegate手动注入hook方法
