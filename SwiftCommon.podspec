@@ -1,18 +1,18 @@
 
 
 Pod::Spec.new do |s|
-  s.name             = 'WSServiceCommon'
+  s.name             = 'SwiftCommon'
   s.version          = '0.1.0'
   s.summary          = '基类'
   s.description      = <<-DESC
 基类协议扩展
                        DESC
 
-  s.homepage         = 'https://gitlab.wsecar.cn/WSServiceCommon'
+  s.homepage         = 'https://github.com/JFSwift'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'JFSwift' => 'guojianfeng@wsecar.com' }
   s.platform     = :ios, "10.0"
-  s.source           = { :git => 'https://gitlab.wsecar.cn/WSServiceCommon.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/JFSwift/SwiftCommon.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '10.0'
   s.requires_arc = true
