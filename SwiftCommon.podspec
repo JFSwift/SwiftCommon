@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
 
 
-  s.source_files = 'RxSwiftDemo/Common/**/*{swift}'
+  s.source_files = 'SwiftCommon/Common/**/*{swift}'
 
   s.dependency 'RxDataSources'
   s.dependency 'NSObject+Rx'
