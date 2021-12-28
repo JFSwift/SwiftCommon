@@ -1,7 +1,7 @@
 
 
 Pod::Spec.new do |s|
-  s.name             = 'SwiftCommon'
+  s.name             = 'SwiftCommonInteractive'
   s.version          = '0.1.0'
   s.summary          = '基类'
   s.description      = <<-DESC
