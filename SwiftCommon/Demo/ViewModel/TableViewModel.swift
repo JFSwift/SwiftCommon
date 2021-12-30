@@ -25,13 +25,13 @@ class TableViewModel: NSObject, CommonListViewModel, ViewModelType {
         let output = Output()
         input.headerRefresh.flatMapLatest { [weak self] _ -> Observable<[Int]> in
             guard let self = self else { return Observable.just([]) }
-            self.pageSize = 1
+            self.pageNow = 1
             return self.requestResultList().trackActivity(self.headerLoading)
         }.bind(to: output.items).disposed(by: rx.disposeBag)
 
         input.footerRefresh.flatMapLatest { [weak self] _ -> Observable<[Int]> in
             guard let self = self else { return Observable.just([]) }
-            self.pageSize += 1
+            self.pageNow += 1
             return self.requestResultList().trackActivity(self.footerLoading)
             }.subscribe(onNext: { items in
                 output.items.accept(output.items.value + items)

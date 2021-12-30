@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SwiftCommon.podspec">
+      location = "group:/Users/JoFox/Documents/GitHub/SwiftCommon/SwiftCommonInteractive.podspec">
    </FileRef>
    <FileRef
       location = "group:SwiftCommon.xcodeproj">

@@ -19,7 +19,7 @@ public protocol CommonListViewModel: CommonViewModel {
 private var kHeaderLoading = "kHeaderLoading"
 private var kFooterLoading = "kFooterLoading"
 private var kRefreshStatus = "kRefreshStatus"
-private var kPageSize = "kPageSize"
+private var kpageNow = "kpageNow"
 
 public extension CommonListViewModel {
     
@@ -29,8 +29,8 @@ public extension CommonListViewModel {
         refreshStatus.accept(action)
         switch action {
         case .loadMoreError:
-            if pageSize > 1 {
-                self.pageSize -= 1
+            if pageNow > 1 {
+                self.pageNow -= 1
             }
         default: break
         }
@@ -74,13 +74,13 @@ public extension CommonListViewModel {
         }
     }
     
-    var pageSize: Int {
+    var pageNow: Int {
         get {
-            if let aValue = objc_getAssociatedObject(self, &kPageSize) as? Int {
+            if let aValue = objc_getAssociatedObject(self, &kpageNow) as? Int {
                 return aValue
             }else {
                 let aValue = 1
-                objc_setAssociatedObject(self, &kPageSize, aValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                objc_setAssociatedObject(self, &kpageNow, aValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 return aValue
             }
         }
