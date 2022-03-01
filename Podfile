@@ -4,7 +4,7 @@
 target 'SwiftCommon' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod 'Aspects'
+#  pod 'Aspects'
   
   pod 'SwifterSwift'
   pod 'MBProgressHUD'
@@ -12,5 +12,7 @@ target 'SwiftCommon' do
   pod 'RxDataSources'
   pod 'NSObject+Rx'
   pod 'MJRefresh'
-
+  pod 'SnapKit'
+  pod 'SwiftLint'
 end
+

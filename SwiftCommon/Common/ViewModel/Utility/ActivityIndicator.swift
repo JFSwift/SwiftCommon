@@ -14,16 +14,16 @@ import RxCocoa
 private struct ActivityToken<E>: ObservableConvertibleType, Disposable {
     private let _source: Observable<E>
     private let _dispose: Cancelable
-    
+
     init(source: Observable<E>, disposeAction: @escaping () -> Void) {
         _source = source
         _dispose = Disposables.create(with: disposeAction)
     }
-    
+
     func dispose() {
         _dispose.dispose()
     }
-    
+
     func asObservable() -> Observable<E> {
         return _source
     }
@@ -37,19 +37,19 @@ private struct ActivityToken<E>: ObservableConvertibleType, Disposable {
  */
 public class ActivityIndicator: SharedSequenceConvertibleType {
     public typealias Element = Bool
-    
+
     public typealias SharingStrategy = DriverSharingStrategy
-    
+
     private let _lock = NSRecursiveLock()
     private let _variable = BehaviorRelay(value: 0)
     private let _loading: SharedSequence<SharingStrategy, Bool>
-    
+
     public init() {
         _loading = _variable.asDriver()
             .map { $0 > 0 }
             .distinctUntilChanged()
     }
-    
+
     fileprivate func trackActivityOfObservable<O: ObservableConvertibleType>(_ source: O) -> Observable<O.Element> {
         return Observable.using({ () -> ActivityToken<O.Element> in
             self.increment()
@@ -58,19 +58,19 @@ public class ActivityIndicator: SharedSequenceConvertibleType {
             return value.asObservable()
         })
     }
-    
+
     func increment() {
         _lock.lock()
         _variable.accept(_variable.value + 1)
         _lock.unlock()
     }
-    
+
     func decrement() {
         _lock.lock()
         _variable.accept(_variable.value - 1)
         _lock.unlock()
     }
-    
+
     public func asSharedSequence() -> SharedSequence<SharingStrategy, Element> {
         return _loading
     }
@@ -78,12 +78,12 @@ public class ActivityIndicator: SharedSequenceConvertibleType {
 
 extension ObservableConvertibleType {
     public func trackActivity(_ activityIndicator: ActivityIndicator) -> Observable<Element> {
-        
+
         return activityIndicator.trackActivityOfObservable(self)
     }
-    
+
     public func trackActivity(_ activityIndicator: ActivityIndicator, isTrackActivity: Bool) -> Observable<Element> {
-        
+
         if isTrackActivity {
             return activityIndicator.trackActivityOfObservable(self)
         } else {

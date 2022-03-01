@@ -10,8 +10,8 @@ import RxSwift
 import RxRelay
 import NSObject_Rx
 
-public protocol CommonListViewController: CommonViewControllerFull {
-    
+public protocol CommonListViewController: CommonFullViewController {
+
     /// 获取当前页面的ScrollView
     /// - Returns: description
     func commonListGetListView() -> UIScrollView?
@@ -34,70 +34,42 @@ private var kListFooterLoading = "kListFooterLoading"
 private var kListRefreshStatus = "kListRefreshStatus"
 
 private var kHeaderRefreshTrigger = "kHeaderRefreshTrigger"
-private var kFooterRefreshTrigger = "kListFooterLoading"
+private var kFooterRefreshTrigger = "kFooterRefreshTrigger"
 
 public extension CommonListViewController {
-        
-    //MARK: - getters and setters
+
+    // MARK: - getters and setters
+
     // 上下拉刷新事件
-    
     var isHeaderLoading: BehaviorRelay<Bool> {
-        get {
-            if let aValue = objc_getAssociatedObject(self, &kListHeaderLoading) as? BehaviorRelay<Bool> {
-                return aValue
-            }else {
-                let aValue = BehaviorRelay(value: false)
-                objc_setAssociatedObject(self, &kListHeaderLoading, aValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                return aValue
-            }
-        }
-    }
-    
-    var isFooterLoading: BehaviorRelay<Bool> {
-        get {
-            if let aValue = objc_getAssociatedObject(self, &kListFooterLoading) as? BehaviorRelay<Bool> {
-                return aValue
-            }else {
-                let aValue = BehaviorRelay(value: false)
-                objc_setAssociatedObject(self, &kListFooterLoading, aValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                return aValue
-            }
-        }
-    }
-    
-    var refreshStatus: BehaviorRelay<MJRefreshAction> {
-        get {
-            if let aValue = objc_getAssociatedObject(self, &kListRefreshStatus) as? BehaviorRelay<MJRefreshAction> {
-                return aValue
-            }else {
-                let aValue = BehaviorRelay<MJRefreshAction>(value: .idle)
-                objc_setAssociatedObject(self, &kListRefreshStatus, aValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                return aValue
-            }
+        getAssociatedObjectIfNilSetDefaultValue(key: &kListHeaderLoading) {
+            BehaviorRelay(value: false)
         }
     }
 
+    var isFooterLoading: BehaviorRelay<Bool> {
+        getAssociatedObjectIfNilSetDefaultValue(key: &kListFooterLoading) {
+            BehaviorRelay(value: false)
+        }
+    }
+
+    // MJRefresh状态事件
+    var refreshStatus: BehaviorRelay<MJRefreshAction> {
+        getAssociatedObjectIfNilSetDefaultValue(key: &kListRefreshStatus) {
+            BehaviorRelay<MJRefreshAction>(value: .idle)
+        }
+    }
+
+    // 主动触发上下拉刷新事件
     var headerRefreshTrigger: PublishSubject<Void> {
-        get {
-            if let aValue = objc_getAssociatedObject(self, &kHeaderRefreshTrigger) as? PublishSubject<Void> {
-                return aValue
-            }else {
-                let aValue = PublishSubject<Void>()
-                objc_setAssociatedObject(self, &kHeaderRefreshTrigger, aValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                return aValue
-            }
+        getAssociatedObjectIfNilSetDefaultValue(key: &kHeaderRefreshTrigger) {
+            PublishSubject<Void>()
         }
     }
 
     var footerRefreshTrigger: PublishSubject<Void> {
-        get {
-            if let aValue = objc_getAssociatedObject(self, &kFooterRefreshTrigger) as? PublishSubject<Void> {
-                return aValue
-            }else {
-                let aValue = PublishSubject<Void>()
-                objc_setAssociatedObject(self, &kFooterRefreshTrigger, aValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                return aValue
-            }
+        getAssociatedObjectIfNilSetDefaultValue(key: &kFooterRefreshTrigger) {
+            PublishSubject<Void>()
         }
     }
 

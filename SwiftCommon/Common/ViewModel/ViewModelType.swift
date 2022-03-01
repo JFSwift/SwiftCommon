@@ -13,4 +13,3 @@ public protocol ViewModelType {
 
     func transform(input: Input) -> Output
 }
-

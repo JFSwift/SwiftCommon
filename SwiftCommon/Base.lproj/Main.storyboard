@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vo5-Nx-1if">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k15-wP-HJp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--基础协议示例-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftCommon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="基础协议示例" id="BYZ-38-t0r" customClass="SimpleCommonViewController" customModule="SwiftCommon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rRs-hU-9sq"/>
+                    <navigationItem key="navigationItem" title="基础协议示例" id="rRs-hU-9sq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="939.13043478260875" y="65.625"/>
+            <point key="canvasLocation" x="1683" y="-308"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--基础协议示例-->
         <scene sceneID="JCD-sS-gPj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vo5-Nx-1if" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="基础协议示例" image="doc" catalog="system" id="HND-g6-vau"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q2w-q5-og3">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -40,10 +42,102 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hrk-l6-AJA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28.985507246376812" y="65.625"/>
+            <point key="canvasLocation" x="916" y="-284"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="7mv-uJ-nO2">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="k15-wP-HJp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Mj8-Lb-vk1">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vo5-Nx-1if" kind="relationship" relationship="viewControllers" id="Z2N-Sk-ftX"/>
+                        <segue destination="hM4-nU-0Uf" kind="relationship" relationship="viewControllers" id="VuU-sQ-qE9"/>
+                        <segue destination="Y0L-NP-VRg" kind="relationship" relationship="viewControllers" id="P3L-60-75m"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nua-6Q-fOF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-616" y="431"/>
+        </scene>
+        <!--基础业务示例-->
+        <scene sceneID="LqT-6L-YrJ">
+            <objects>
+                <viewController id="dDO-j1-ONs" customClass="SimpleCommonFullViewController" customModule="SwiftCommon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DX0-HS-4oU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="xXn-BZ-6Nw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="基础业务示例" id="GcC-4g-Dt0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wOU-Xk-yP2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1826.0869565217392" y="405.80357142857139"/>
+        </scene>
+        <!--基础列表示例-->
+        <scene sceneID="Afk-Nz-a3K">
+            <objects>
+                <viewController id="0j1-xE-khZ" customClass="SimpleCommonListController" customModule="SwiftCommon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8X6-qn-JIO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="veZ-vD-ABH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="基础列表示例" id="U0D-jo-YgF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RKo-49-Cvv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1809" y="1111"/>
+        </scene>
+        <!--基础业务示例-->
+        <scene sceneID="RnR-18-Fym">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hM4-nU-0Uf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="基础业务示例" image="archivebox.circle.fill" catalog="system" id="5bY-DK-duA"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="J9f-t6-28f">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dDO-j1-ONs" kind="relationship" relationship="rootViewController" id="gSN-4F-Lj3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y2O-D1-JhE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="915.94202898550736" y="405.80357142857139"/>
+        </scene>
+        <!--基础列表示例-->
+        <scene sceneID="qV7-Cx-0FR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y0L-NP-VRg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="基础列表示例" image="archivebox.fill" catalog="system" id="chP-Yg-1Xo"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UCd-JE-Ycz">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0j1-xE-khZ" kind="relationship" relationship="rootViewController" id="YY7-kn-AFk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8j0-ke-OEj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="952" y="1111"/>
         </scene>
     </scenes>
     <resources>
+        <image name="archivebox.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="archivebox.fill" catalog="system" width="128" height="106"/>
+        <image name="doc" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

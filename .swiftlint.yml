@@ -1,0 +1,11 @@
+# 忽略检测以下文件夹
+excluded:
+  - Pods
+
+# 注释提示长度
+line_length:
+  warning: 200
+  # 函数命名
+  #ignores_function_declarations: true
+  # 忽略评论
+  #ignores_comments: true

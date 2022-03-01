@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 import MJRefresh
 
+// MARK: - 枚举
+
 public enum MJRefreshAction {
     // 闲置
     case idle
@@ -20,6 +22,8 @@ public enum MJRefreshAction {
     case loadMoreError
 }
 
+// MARK: - Rx扩展
+
 extension Reactive where Base: MJRefreshComponent {
     public var isAnimating: Binder<Bool> {
         return Binder(self.base) { refreshControl, active in
@@ -27,8 +31,7 @@ extension Reactive where Base: MJRefreshComponent {
                 // 打开会多次调用刷新
                 // refreshControl.beginRefreshing()
             } else {
-                if refreshControl.state == .noMoreData {
-                }else {
+                if refreshControl.state != .noMoreData {
                     refreshControl.endRefreshing()
                 }
             }
@@ -36,55 +39,32 @@ extension Reactive where Base: MJRefreshComponent {
     }
 }
 
-extension Reactive where Base: UIScrollView {
-    // 状态更新回调
-    var refreshStatus: Binder <MJRefreshAction> {
-        return Binder(base) { target, action in
-            switch action {
-            case let .stopHeaderRefresh(hiddenFooter):
-                resetFooterRefreshIdle(false)
-                if let footer = target.mj_footer {
-                    DispatchQueue.main.async {
-                        footer.isHidden = hiddenFooter
-                    }
-                }
-            case let .stopFooterRefresh(showMore):
-                resetFooterRefreshIdle(false)
-                if let footer = target.mj_footer {
-                    if (showMore) {
-                        footer.endRefreshingWithNoMoreData()
-                    }else {
-                        footer.resetNoMoreData()
-                    }
-                }
-            case .loadMoreError:
-                resetFooterRefreshIdle(true)
-            default: break
-            }
-        }
-    }
-    
+// MARK: - UI扩展
+
+extension Extension where Base: UIScrollView {
+
     /// 添加刷新头部
     /// - Parameter block: 回调
-    func addRefreshHeader(block:@escaping MJRefreshComponentAction){
-        base.mj_header = MJRefreshNormalHeader(refreshingBlock:block)
+    func addRefreshHeader(block:@escaping MJRefreshComponentAction) {
+        base.mj_header = MJRefreshNormalHeader(refreshingBlock: block)
     }
-    
+
     /// 添加刷新尾部
     /// - Parameter block: block description
-    func addListViewRefreshFooter(block:@escaping MJRefreshComponentAction){
+    func addRefreshFooter(block:@escaping MJRefreshComponentAction) {
         if base.mj_footer == nil {
-            let footer = MJRefreshAutoNormalFooter(refreshingBlock:block)
+            let footer = MJRefreshAutoNormalFooter(refreshingBlock: block)
             footer.setTitle("点击或上拉加载更多", for: .idle)
             footer.setTitle("已经到底啦~", for: .noMoreData)
             footer.setTitle("加载中...", for: .refreshing)
+            footer.isHidden = true
             base.mj_footer = footer
         }
     }
-    
+
     /// 重置footer闲置状态
     /// - Parameter error: error description
-    func resetFooterRefreshIdle(_ error: Bool){
+    func resetFooterRefreshIdle(_ error: Bool) {
         guard let footer = base.mj_footer as? MJRefreshAutoNormalFooter else {
             return
         }
